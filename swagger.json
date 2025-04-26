@@ -1,0 +1,532 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Life Management API",
+      "version": "1.0.0",
+      "description": "API for managing users, tasks, goals, achievements, moods, notifications, and notes."
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local server"
+      }
+    ],
+    "paths": {
+      "/users": {
+        "post": {
+          "summary": "Create a user",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User created successfully"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all users",
+          "responses": {
+            "200": {
+              "description": "List of users"
+            }
+          }
+        }
+      },
+      "/users/{id}": {
+        "get": {
+          "summary": "Get user by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User data"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update user",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete user",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User deleted"
+            }
+          }
+        }
+      },
+  
+      "/goals": {
+        "post": {
+          "summary": "Create a goal",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Goal"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Goal created"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all goals",
+          "responses": {
+            "200": {
+              "description": "List of goals"
+            }
+          }
+        }
+      },
+      "/goals/{id}": {
+        "get": {
+          "summary": "Get goal by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Goal data"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update goal",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Goal"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Goal updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete goal",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Goal deleted"
+            }
+          }
+        }
+      },
+  
+      "/achievements": {
+        "post": {
+          "summary": "Create an achievement",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Achievement"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Achievement created"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all achievements",
+          "responses": {
+            "200": {
+              "description": "List of achievements"
+            }
+          }
+        }
+      },
+      "/achievements/{id}": {
+        "put": {
+          "summary": "Update achievement",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Achievement"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Achievement updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete achievement",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Achievement deleted"
+            }
+          }
+        }
+      },
+  
+      "/moods": {
+        "post": {
+          "summary": "Create a mood entry",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MoodEntry"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Mood entry created"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all mood entries",
+          "responses": {
+            "200": {
+              "description": "List of mood entries"
+            }
+          }
+        }
+      },
+      "/moods/{id}": {
+        "put": {
+          "summary": "Update mood entry",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Mood entry updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete mood entry",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Mood entry deleted"
+            }
+          }
+        }
+      },
+  
+      "/notifications": {
+        "post": {
+          "summary": "Create a notification",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Notification"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Notification created"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all notifications",
+          "responses": {
+            "200": {
+              "description": "List of notifications"
+            }
+          }
+        }
+      },
+      "/notifications/{id}": {
+        "put": {
+          "summary": "Update notification",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Notification updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete notification",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Notification deleted"
+            }
+          }
+        }
+      },
+  
+      "/notes": {
+        "post": {
+          "summary": "Create a note",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoteSummary"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Note created"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get all notes",
+          "responses": {
+            "200": {
+              "description": "List of notes"
+            }
+          }
+        }
+      },
+      "/notes/{id}": {
+        "put": {
+          "summary": "Update note",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Note updated"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete note",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Note deleted"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "User": {
+          "type": "object",
+          "properties": {
+            "username": { "type": "string" },
+            "email": { "type": "string" },
+            "password": { "type": "string" }
+          }
+        },
+        "Goal": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "description": { "type": "string" },
+            "completed": { "type": "boolean" }
+          }
+        },
+        "Achievement": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "date": { "type": "string", "format": "date" }
+          }
+        },
+        "MoodEntry": {
+          "type": "object",
+          "properties": {
+            "mood": { "type": "string" },
+            "date": { "type": "string", "format": "date" }
+          }
+        },
+        "Notification": {
+          "type": "object",
+          "properties": {
+            "message": { "type": "string" },
+            "read": { "type": "boolean" }
+          }
+        },
+        "NoteSummary": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "content": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+  
